@@ -27,6 +27,17 @@ typedef struct bf_config_t {
 	int 	read_stdout;
 } bf_config_t;
 
+// Brainfuck execution environment
+typedef struct bf_env_t {
+	// 
+	unsigned char* 	memory;
+	/* where in the memory array this is pointing to.
+	 * 0 means memory. 1 means *(memory + 1)
+	 * pointers are checked by the interpreter not to overflow or cause issues
+	 */
+	unsigned int ptr;
+} bf_env_t;
+
 // creates the default configuration
 void configure_default(bf_config_t* config){
 	config->array_length 	= 65536;
@@ -57,10 +68,17 @@ bf_config_t* configure(int argc, char** argv){
 	return result;
 }
 
+bf_env_t* create_environment(bf_config_t* config){
+	bf_env_t* result = malloc(sizeof(bf_env_t));
+	result->memory = malloc(config->array_length * sizeof(char));
+	result->ptr = 0;
+	return result;
+}
 int main(int argc, char** argv){
 	// load command line arguments
 	bf_config_t* config = configure(argc, argv);
 	// create bf execution environment based on parameters
+	bf_env_t* env = create_environment(config);
 	// load program
 	// execute program
 	// dump memory if asked to
