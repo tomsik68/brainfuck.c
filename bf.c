@@ -11,6 +11,17 @@
  */
 
 #include <stdio.h>
+// Brainfuck interpreter configuration
+typedef struct bf_config_t {
+	// length of main character array
+	int	array_length;
+	// dump memory at the end of program execution
+	int 	dump_memory;
+	// file to execute
+	char* 	filename;
+	// read the code from stdout?
+	int 	read_stdout;
+} bf_config_t;
 
 int main(int argc, char** argv){
 	// load command line arguments
