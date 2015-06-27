@@ -5,13 +5,17 @@
 
 /* Brainfuck execution environment */
 typedef struct bf_env_t {
-	/*  */
+	/* brainfuck interpreter memory(accessible char array)  */
 	unsigned char* 	memory;
+	/* memory size(length of array) */
+	size_t memory_size;
 	/* where in the memory array this is pointing to.
 	 * 0 means memory. 1 means *(memory + 1)
 	 * pointers are checked by the interpreter not to overflow or cause issues
 	 */
 	unsigned int ptr;
+	/* address of instruction that is currently being executed */
+	int address;
 } bf_env_t;
 
 typedef enum {
@@ -47,6 +51,8 @@ typedef struct bf_instruction_t {
 } bf_instruction_t;
 
 
-bf_env_t* create_environment(bf_config_t* config);
+bf_env_t* 	create_environment(bf_config_t* config);
+
+void 		execute(bf_instruction_t* program, bf_env_t* environment);
 
 #endif /* __EXECUTION_H__ */

@@ -25,6 +25,7 @@ int main(int argc, char** argv){
 	/* load program */
 	bf_instruction_t* program = load_program_from_file(config->filename);
 	/* execute program */
+	execute(program, env);
 	/* dump memory if asked to */
 	/* cleanup */
 	return 0;
