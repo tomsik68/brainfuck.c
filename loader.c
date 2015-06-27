@@ -110,7 +110,7 @@ bf_instruction_t* load_program_from_file(char* filename){
 	bf_instruction_t* result;
 	FILE* stream;
 	if(STRINGS_EQUAL(filename, "-")){
-		stream = stdout;
+		stream = stdin;
 	} else {
 		stream = fopen(filename, "r");
 	}
