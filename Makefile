@@ -10,4 +10,4 @@ execution.o: configuration.o execution.c execution.h
 loader.o: execution.o configuration.o loader.c loader.h
 	gcc $(CFLAGS) -c loader.c
 clean:
-	rm -rf bfi bf.o configuration.o
+	rm -rf bfi bf.o configuration.o execution.o loader.o
