@@ -27,6 +27,11 @@ int main(int argc, char** argv){
 	/* execute program */
 	execute(program, env);
 	/* dump memory if asked to */
+	if(config->dump_memory == 1) {
+		FILE* dest = fopen("memory.bin", "w");
+		fwrite(env->memory, sizeof(char), env->memory_size, dest);
+		fclose(dest);
+	}
 	/* cleanup */
 	return 0;
 }
