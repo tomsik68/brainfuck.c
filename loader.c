@@ -104,6 +104,9 @@ bf_instruction_t* load_program_from_stream(FILE* stream){
 				++address;
 			}
 		}
+		if(loopstarts != NULL){
+			printf("ERROR: Unbalanced loops\n");
+		}
 	}
 	return result;
 }

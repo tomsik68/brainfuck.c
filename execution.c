@@ -24,6 +24,7 @@ void dec_ptr(bf_env_t* env, void* params){
 void ptr_left(bf_env_t* env, void* params){
 	if(env->ptr == 0){
 		/* ERROR: ptr can't go more to the left */
+		printf("ERROR: env->ptr < 0\n");
 	}
 	--(env->ptr);
 }
@@ -31,6 +32,7 @@ void ptr_left(bf_env_t* env, void* params){
 void ptr_right(bf_env_t* env, void* params){
 	if(env->ptr == env->memory_size - 1) {
 		/* ERROR: ptr can't go more to the right */
+		printf("ERROR: env->ptr > env->memory_size - 1\n");
 	}
 	++(env->ptr);
 }
