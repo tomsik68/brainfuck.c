@@ -33,6 +33,10 @@ int main(int argc, char** argv){
 		fclose(dest);
 	}
 	/* cleanup */
+	free(env->memory);
+	free(config);
+	free(env);
+	free(program);
 	return 0;
 }
 
