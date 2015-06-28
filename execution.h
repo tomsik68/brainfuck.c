@@ -14,8 +14,6 @@ typedef struct bf_env_t {
 	 * pointers are checked by the interpreter not to overflow or cause issues
 	 */
 	unsigned int ptr;
-	/* address of instruction that is currently being executed */
-	int address;
 } bf_env_t;
 
 typedef enum {

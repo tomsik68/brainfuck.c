@@ -8,7 +8,6 @@ bf_env_t* create_environment(bf_config_t* config){
 	memset(result->memory, 0, config->array_length);
 	/* the pointer points to the first element of memory array */
 	result->ptr = 0;
-	result->address = 0;
 	result->memory_size = config->array_length;
 	return result;
 }
@@ -48,11 +47,6 @@ void read(bf_env_t* env, void* params){
 void execute(bf_instruction_t* program, bf_env_t* environment) {
 	printf("\n------------------Execution start.---------------------\n");
 	bf_instruction_t* currentInstruction = program;
-	/* seek to address specified by environment */
-	int addr;
-	for(addr = 0; addr < environment->address; ++addr){
-		currentInstruction = currentInstruction->next;
-	}
 	while(currentInstruction != NULL){
 		switch(currentInstruction->type){
 			case INC_PTR:
@@ -89,7 +83,6 @@ void execute(bf_instruction_t* program, bf_env_t* environment) {
 				break;
 		}
 		currentInstruction = currentInstruction->next;
-		++(environment->address);
 	}
 	printf("\n------------------Execution end.---------------------\n");
 }
