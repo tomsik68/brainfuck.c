@@ -83,18 +83,20 @@ bf_instruction_t* load_program_from_stream(FILE* stream){
 					/* PUSH address */
 					loopstart_t* newloop = malloc(sizeof(loopstart_t));
 					newloop->prev = loopstarts;
-					newloop->address = address;
+					newloop->instruction = current;
 					loopstarts = newloop;
 				} else if(current->type == ENDWHILE){
 					/* POP address */
 					loopstart_t* loop = loopstarts;
 					if(loop == NULL) {
 						/* TODO: ERROR: unbalanced loops */
+						printf("ERROR: Unbalanced loops\n");
 					}
 					loopstarts = loopstarts->prev;
-					/* save the address in parameters */
-					current->parameters = malloc(sizeof(int));
-					memcpy(current->parameters, &(loop->address), sizeof(int));
+					/* current instruction will store address to WHILE instruction */
+					current->parameters = loop->instruction;
+					/* while instruction will store address to current instruction */
+					loop->instruction->parameters = current;
 					free(loop);
 				}
 				/* move the pointer */

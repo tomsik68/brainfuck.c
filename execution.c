@@ -76,15 +76,14 @@ void execute(bf_instruction_t* program, bf_env_t* environment) {
 				break;
 			case WHILE:
 				/* do nothing */
+				if(!(environment->memory[environment->ptr])){
+					currentInstruction = currentInstruction->parameters;
+				}
 				break;
 			case ENDWHILE:
 				if(environment->memory[environment->ptr]) {
 					/* jump back to associated while */
-					int jumpBack = *((int*)currentInstruction->parameters);
-					while(environment->address != jumpBack){
-						currentInstruction = currentInstruction->prev;
-						--(environment->address);
-					}
+					currentInstruction = currentInstruction->parameters;
 				} else {
 					/* do nothing, we're continuing in the program */
 				}
