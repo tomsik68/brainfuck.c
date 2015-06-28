@@ -8,8 +8,8 @@
 typedef struct loopstart_t {
 	/* previous brackets_t in the stack */
 	struct loopstart_t*	prev;
-	/* address of this bracket */
-	int			address;
+	/* pointer to WHILE instruction */
+	bf_instruction_t*	instruction;
 } loopstart_t;
 
 /* returns 1 if this character is a valid instruction character */
