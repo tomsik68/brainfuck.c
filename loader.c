@@ -117,5 +117,8 @@ bf_instruction_t* load_program_from_file(char* filename){
 		stream = fopen(filename, "r");
 	}
 	result = load_program_from_stream(stream);
+	if (!STRINGS_EQUAL(filename, "-")){
+		fclose(stream);
+	}
 	return result;
 }
